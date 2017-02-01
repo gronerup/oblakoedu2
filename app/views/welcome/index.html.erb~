@@ -1,0 +1,44 @@
+<script src="application.js"></script>
+
+
+<style type="text/css">
+.link {margin-left: 50px}
+
+</style>
+ 
+
+
+
+
+<h1>Задачи</h1>
+<% @projects.each do |project| %>
+<h2><%= project.title %> </h2>
+<ul>
+<% project.todos.each do |todo| %>
+  
+   <li> <p> <%= todo.text %> </p> </li>
+   <% end %>
+
+</ul>
+<% end %>
+<h1>Новая задача </h1>
+ <a id="add_todo" href="#"> <img src="addtodoicon.png" alt="addTodoIcon.png"> </a>
+
+<div id="new_todo">
+<%= form_for :todo,:html => {:id => "form"} do |f| %>
+  <p>
+ 
+    <%= f.text_field :text %>
+  </p>
+ 
+   
+ <p> <%= select(:todo, :project_id, [['Семья', 1], ['Работа', 2], ['Прочее', 3]]) %> </p>
+  <p>
+  <%= link_to 'ОТМЕНА', "#add_todo", id: "ok" %>
+   <%= link_to 'ОК', "#add_todo", id: "cancel_link" %>
+
+  </p>
+ 
+<% end %>
+</div>
+ 
